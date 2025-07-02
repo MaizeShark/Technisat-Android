@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="oval">
+
+    <!-- Halbtransparenter weißer Kreis als Hintergrund -->
+    <solid android:color="#80818181" />
+
+    <!-- Du kannst optional auch eine Größe definieren, aber das ist meist nicht nötig -->
+    <!-- <size android:width="88dp" android:height="88dp" /> -->
+
+</shape>
