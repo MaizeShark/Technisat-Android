@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Zustand, wenn das Element den Fokus hat (D-Pad ist darauf) -->
+    <item android:state_focused="true">
+        <shape android:shape="oval">
+            <!-- Hintergrundfarbe des Kreises -->
+            <solid android:color="#40FFFFFF" />
+            <!-- Ein dickerer, farbiger Rand, um den Fokus zu zeigen -->
+            <stroke android:width="4dp" android:color="@color/material_dynamic_primary40" />
+        </shape>
+    </item>
+
+    <!-- Standardzustand (nicht fokussiert) -->
+    <item>
+        <!-- Hier verwenden wir dein ursprüngliches Circle-Drawable -->
+        <shape android:shape="oval">
+            <solid android:color="#40FFFFFF" />
+        </shape>
+    </item>
+
+</selector>

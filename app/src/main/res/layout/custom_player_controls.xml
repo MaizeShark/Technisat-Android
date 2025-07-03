@@ -1,114 +1,126 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.maizeshark.techinsat.FadingControlsLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/custom_controls_root"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <!-- Der Hintergrund bleibt gleich -->
-    <View
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:background="#99000000"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <!-- PLAY/PAUSE-BUTTON MIT NEUER ID -->
-    <ImageButton
-        android:id="@+id/custom_play_pause"
-        style="@style/ExoMediaButton"
-        android:layout_width="88dp"
-        android:layout_height="88dp"
-        android:background="@drawable/material_circle_background"
-        android:elevation="4dp"
-        android:src="@drawable/play"
-        android:visibility="visible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:alpha="1.0"
-        tools:visibility="visible" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#99000000" />
 
-    <!-- FORWARD-BUTTON MIT NEUER ID -->
-    <ImageButton
-        android:id="@+id/custom_ffwd"
-        style="@style/ExoMediaButton.FastForward"
-        android:layout_width="88dp"
-        android:layout_height="88dp"
-        android:background="@drawable/material_circle_background"
-        android:elevation="4dp"
-        android:src="@drawable/forward_10_seconds"
-        android:padding="0dp"
-        android:scaleType="centerInside"
-        android:visibility="visible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.7"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:alpha="1.0"
-        tools:visibility="visible" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
 
-    <!-- REWIND-BUTTON MIT NEUER ID -->
-    <ImageButton
-        android:id="@+id/custom_rew"
-        style="@style/ExoMediaButton.Rewind"
-        android:layout_width="88dp"
-        android:layout_height="88dp"
-        android:background="@drawable/material_circle_background"
-        android:elevation="4dp"
-        android:src="@drawable/backward_10_seconds"
-        android:visibility="visible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.3"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:alpha="1.0"
-        tools:visibility="visible" />
+            <!-- REWIND-BUTTON -->
+            <ImageButton
+                android:id="@+id/custom_rew"
+                style="@style/ExoMediaButton.Rewind"
+                android:layout_width="88dp"
+                android:layout_height="88dp"
+                android:background="@drawable/dpad_button_background"
+                android:elevation="4dp"
+                android:focusable="true"
+                android:src="@drawable/backward_10_seconds"
+                android:visibility="visible"
+                android:nextFocusRight="@id/custom_play_pause"
+                android:nextFocusDown="@id/exo_progress"
+                />
 
-    <!-- TIMEBAR BEHÄLT DIE STANDARD-ID! ExoPlayer soll diese weiter steuern. -->
-    <androidx.media3.ui.DefaultTimeBar
-        android:id="@id/exo_progress"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="32dp"
-        app:buffered_color="#80FFFFFF"
-        app:played_color="@color/material_dynamic_primary40"
-        app:unplayed_color="#40FFFFFF"
-        app:scrubber_color="@color/material_dynamic_primary40"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-    <!-- Elapsed Time -->
-    <TextView
-        android:id="@+id/tv_elapsed_time"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="0:00"
-        android:textColor="@android:color/white"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toTopOf="@id/exo_progress"
-        app:layout_constraintStart_toStartOf="@id/exo_progress"
-        android:layout_marginBottom="4dp"/>
+            <!-- PLAY/PAUSE-BUTTON -->
+            <ImageButton
+                android:id="@+id/custom_play_pause"
+                style="@style/ExoMediaButton"
+                android:layout_width="88dp"
+                android:layout_height="88dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="24dp"
+                android:background="@drawable/dpad_button_background"
+                android:elevation="4dp"
+                android:focusable="true"
+                android:src="@drawable/play"
+                android:visibility="visible"
+                android:nextFocusLeft="@id/custom_rew"
+                android:nextFocusRight="@id/custom_ffwd"
+                android:nextFocusDown="@id/exo_progress"
+                />
 
-    <!-- Remaining Time -->
-    <TextView
-        android:id="@+id/tv_remaining_time"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="-0:00"
-        android:textColor="@android:color/white"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toTopOf="@id/exo_progress"
-        app:layout_constraintEnd_toEndOf="@id/exo_progress"
-        android:layout_marginBottom="4dp"/>
+            <!-- FORWARD-BUTTON -->
+            <ImageButton
+                android:id="@+id/custom_ffwd"
+                style="@style/ExoMediaButton.FastForward"
+                android:layout_width="88dp"
+                android:layout_height="88dp"
+                android:background="@drawable/dpad_button_background"
+                android:elevation="4dp"
+                android:focusable="true"
+                android:padding="0dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/forward_10_seconds"
+                android:visibility="visible"
+                android:nextFocusLeft="@id/custom_play_pause"
+                android:nextFocusDown="@id/exo_progress"
+                />
+
+        </LinearLayout>
 
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:orientation="vertical"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:paddingBottom="32dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_elapsed_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0:00"
+                    android:textColor="@android:color/white"
+                    android:textSize="14sp" />
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1" />
+                <TextView
+                    android:id="@+id/tv_remaining_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="-0:00"
+                    android:textColor="@android:color/white"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <!-- TIMEBAR -->
+            <androidx.media3.ui.DefaultTimeBar
+                android:id="@+id/exo_progress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusable="true"
+                app:buffered_color="#80FFFFFF"
+                app:played_color="@color/material_dynamic_primary40"
+                app:scrubber_color="@color/material_dynamic_primary40"
+                app:unplayed_color="#40FFFFFF"
+                android:nextFocusUp="@id/custom_play_pause"
+                />
+        </LinearLayout>
+    </RelativeLayout>
 </com.maizeshark.techinsat.FadingControlsLayout>
